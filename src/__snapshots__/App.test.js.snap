@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Account
+  user={
+    Object {
+      "email": "davidwinalda94@gmail.com",
+      "name": "David Winalda",
+      "username": "davidwinalda",
+    }
+  }
+>
+  <div
+    key="davidwinalda"
+    style={
+      Object {
+        "margin": "2rem 0rem 0rem 15rem",
+        "width": "15rem",
+      }
+    }
+  >
+    <h4>
+      David Winalda
+    </h4>
+    <p>
+      davidwinalda94@gmail.com
+    </p>
+    <hr />
+  </div>
+</Account>
+`;

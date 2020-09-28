@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function App() {
+import './App.css';
+import Account from './components/Account';
+
+const App = () => {
+  const [users, setUsers] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+
+  // Fecth data API
+  const fetchUser = () => {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+    .then((response) => {
+      console.log(response.data)
+      setUsers(response.data);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      setError(error)
+    })
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Display Active Users Account Details</h1>
+      {
+        isLoading ? (
+          <p>Fetching users...</p>
+        ) : (
+          users.map((user) => {
+            return <Account key={user.username} user={user} />;
+          })
+        )
+      }
     </div>
   );
 }
